@@ -18,7 +18,7 @@ type etcdConfig struct {
 
 var etcdConf *etcdConfig
 
-func NewEtcdConfig() Etcd {
+func EtcdConfig() Etcd {
 	if etcdConf == nil {
 		etcdConf = &etcdConfig{}
 		once.Do(func() {

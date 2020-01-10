@@ -7,7 +7,7 @@ import (
 )
 
 func TestDatabase(t *testing.T) {
-	f := configer.NewDatabaseConfig()
+	f := configer.DatabaseConfig()
 	fmt.Printf("Connection: %v \n", f.GetConnection())
 	fmt.Printf("Host: %v \n", f.GetHost())
 	fmt.Printf("Port: %v \n", f.GetPort())

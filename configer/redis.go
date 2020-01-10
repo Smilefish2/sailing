@@ -18,7 +18,7 @@ type redisConfig struct {
 
 var redisConf *redisConfig
 
-func NewRedisConfig() Redis {
+func RedisConfig() Redis {
 	if redisConf == nil {
 		redisConf = &redisConfig{}
 		once.Do(func() {

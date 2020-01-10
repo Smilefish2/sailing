@@ -28,7 +28,7 @@ type databaseConfig struct {
 
 var databaseConf *databaseConfig
 
-func NewDatabaseConfig() Database {
+func DatabaseConfig() Database {
 	if databaseConf == nil {
 		databaseConf = &databaseConfig{}
 		once.Do(func() {

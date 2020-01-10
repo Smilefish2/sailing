@@ -7,7 +7,7 @@ import (
 )
 
 func TestApp(t *testing.T) {
-	f := configer.NewAppConfig()
+	f := configer.AppConfig()
 	fmt.Printf("Env: %v \n", f.GetEnv())
 	fmt.Printf("Key: %v \n", f.GetKey())
 	fmt.Printf("URL: %v \n", f.GetUrl())

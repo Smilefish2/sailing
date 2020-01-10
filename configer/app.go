@@ -26,7 +26,7 @@ type appConfig struct {
 
 var appConf *appConfig
 
-func NewAppConfig() App {
+func AppConfig() App {
 	if appConf == nil {
 		appConf = &appConfig{}
 		once.Do(func() {

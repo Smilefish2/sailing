@@ -7,7 +7,7 @@ import (
 )
 
 func TestRedis(t *testing.T) {
-	f := configer.NewRedisConfig()
+	f := configer.RedisConfig()
 	fmt.Printf("Host: %v \n", f.GetHost())
 	fmt.Printf("Port: %v \n", f.GetPort())
 	fmt.Printf("Database: %v \n", f.GetDatabase())
