@@ -2,6 +2,7 @@ package configer
 
 import (
 	"github.com/caarlos0/env/v6"
+	"sync"
 )
 
 type App interface {
@@ -24,18 +25,19 @@ type appConfig struct {
 	Timezone string `env:"APP_TIMEZONE" envDefault:"UTC"`
 }
 
-var appConf *appConfig
+var appEnv *appConfig
+var appOnce sync.Once
 
 func AppConfig() App {
-	if appConf == nil {
-		appConf = &appConfig{}
-		once.Do(func() {
-			if err := env.Parse(appConf); err != nil {
+	if appEnv == nil {
+		appEnv = &appConfig{}
+		appOnce.Do(func() {
+			if err := env.Parse(appEnv); err != nil {
 				panic(err)
 			}
 		})
 	}
-	return appConf
+	return appEnv
 }
 
 func (c appConfig) GetEnv() string {

@@ -1,6 +1,9 @@
 package configer
 
-import "github.com/caarlos0/env/v6"
+import (
+	"github.com/caarlos0/env/v6"
+	"sync"
+)
 
 type Redis interface {
 	GetHost() string
@@ -16,18 +19,19 @@ type redisConfig struct {
 	Password string `env:"REDIS_PASSWORD" envDefault:"" `
 }
 
-var redisConf *redisConfig
+var redisEnv *redisConfig
+var redisOnce sync.Once
 
 func RedisConfig() Redis {
-	if redisConf == nil {
-		redisConf = &redisConfig{}
-		once.Do(func() {
-			if err := env.Parse(redisConf); err != nil {
+	if redisEnv == nil {
+		redisEnv = &redisConfig{}
+		redisOnce.Do(func() {
+			if err := env.Parse(redisEnv); err != nil {
 				panic(err)
 			}
 		})
 	}
-	return redisConf
+	return redisEnv
 }
 
 func (c redisConfig) GetHost() string {

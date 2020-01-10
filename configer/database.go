@@ -2,6 +2,7 @@ package configer
 
 import (
 	"github.com/caarlos0/env/v6"
+	"sync"
 )
 
 type Database interface {
@@ -26,19 +27,20 @@ type databaseConfig struct {
 	Collation  string `env:"DB_COLLATION" envDefault:"utf8mb4_unicode_ci"`
 }
 
-var databaseConf *databaseConfig
+var databaseEnv *databaseConfig
+var databaseOnce sync.Once
 
 func DatabaseConfig() Database {
-	if databaseConf == nil {
-		databaseConf = &databaseConfig{}
-		once.Do(func() {
-			if err := env.Parse(databaseConf); err != nil {
+	if databaseEnv == nil {
+		databaseEnv = &databaseConfig{}
+		databaseOnce.Do(func() {
+			if err := env.Parse(databaseEnv); err != nil {
 				panic(err)
 			}
 		})
 	}
 
-	return databaseConf
+	return databaseEnv
 }
 
 func (c databaseConfig) GetConnection() string {

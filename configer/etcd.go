@@ -2,6 +2,7 @@ package configer
 
 import (
 	"github.com/caarlos0/env/v6"
+	"sync"
 )
 
 type Etcd interface {
@@ -16,18 +17,19 @@ type etcdConfig struct {
 	Enabled bool   `env:"ETCD_Enabled" envDefault:"false"`
 }
 
-var etcdConf *etcdConfig
+var etcdEnv *etcdConfig
+var etcdOnce sync.Once
 
 func EtcdConfig() Etcd {
-	if etcdConf == nil {
-		etcdConf = &etcdConfig{}
-		once.Do(func() {
-			if err := env.Parse(etcdConf); err != nil {
+	if etcdEnv == nil {
+		etcdEnv = &etcdConfig{}
+		etcdOnce.Do(func() {
+			if err := env.Parse(etcdEnv); err != nil {
 				panic(err)
 			}
 		})
 	}
-	return etcdConf
+	return etcdEnv
 }
 
 func (c etcdConfig) GetHost() string {
