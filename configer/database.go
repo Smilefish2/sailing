@@ -26,14 +26,19 @@ type databaseConfig struct {
 	Collation  string `env:"DB_COLLATION" envDefault:"utf8mb4_unicode_ci"`
 }
 
+var databaseConf *databaseConfig
+
 func NewDatabaseConfig() Database {
-	var envConfig = databaseConfig{}
-	once.Do(func() {
-		if err := env.Parse(&envConfig); err != nil {
-			panic(err)
-		}
-	})
-	return envConfig
+	if databaseConf == nil {
+		databaseConf = &databaseConfig{}
+		once.Do(func() {
+			if err := env.Parse(databaseConf); err != nil {
+				panic(err)
+			}
+		})
+	}
+
+	return databaseConf
 }
 
 func (c databaseConfig) GetConnection() string {

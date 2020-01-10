@@ -24,14 +24,18 @@ type appConfig struct {
 	Timezone string `env:"APP_TIMEZONE" envDefault:"UTC"`
 }
 
+var appConf *appConfig
+
 func NewAppConfig() App {
-	var envConfig = appConfig{}
-	once.Do(func() {
-		if err := env.Parse(&envConfig); err != nil {
-			panic(err)
-		}
-	})
-	return envConfig
+	if appConf == nil {
+		appConf = &appConfig{}
+		once.Do(func() {
+			if err := env.Parse(appConf); err != nil {
+				panic(err)
+			}
+		})
+	}
+	return appConf
 }
 
 func (c appConfig) GetEnv() string {

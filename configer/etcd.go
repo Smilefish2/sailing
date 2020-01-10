@@ -16,14 +16,18 @@ type etcdConfig struct {
 	Enabled bool   `env:"ETCD_Enabled" envDefault:"false"`
 }
 
+var etcdConf *etcdConfig
+
 func NewEtcdConfig() Etcd {
-	var envConfig = etcdConfig{}
-	once.Do(func() {
-		if err := env.Parse(&envConfig); err != nil {
-			panic(err)
-		}
-	})
-	return envConfig
+	if etcdConf == nil {
+		etcdConf = &etcdConfig{}
+		once.Do(func() {
+			if err := env.Parse(etcdConf); err != nil {
+				panic(err)
+			}
+		})
+	}
+	return etcdConf
 }
 
 func (c etcdConfig) GetHost() string {
