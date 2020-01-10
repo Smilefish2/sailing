@@ -28,9 +28,11 @@ type databaseConfig struct {
 
 func NewDatabaseConfig() Database {
 	var envConfig = databaseConfig{}
-	if err := env.Parse(&envConfig); err != nil {
-		panic(err)
-	}
+	once.Do(func() {
+		if err := env.Parse(&envConfig); err != nil {
+			panic(err)
+		}
+	})
 	return envConfig
 }
 

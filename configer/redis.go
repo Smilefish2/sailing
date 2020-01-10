@@ -20,9 +20,11 @@ type redisConfig struct {
 
 func NewRedisConfig() Redis {
 	var envConfig = redisConfig{}
-	if err := env.Parse(&envConfig); err != nil {
-		panic(err)
-	}
+	once.Do(func() {
+		if err := env.Parse(&envConfig); err != nil {
+			panic(err)
+		}
+	})
 	return envConfig
 }
 

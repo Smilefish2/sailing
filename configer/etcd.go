@@ -18,9 +18,11 @@ type etcdConfig struct {
 
 func NewEtcdConfig() Etcd {
 	var envConfig = etcdConfig{}
-	if err := env.Parse(&envConfig); err != nil {
-		panic(err)
-	}
+	once.Do(func() {
+		if err := env.Parse(&envConfig); err != nil {
+			panic(err)
+		}
+	})
 	return envConfig
 }
 

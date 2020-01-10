@@ -26,9 +26,11 @@ type appConfig struct {
 
 func NewAppConfig() App {
 	var envConfig = appConfig{}
-	if err := env.Parse(&envConfig); err != nil {
-		panic(err)
-	}
+	once.Do(func() {
+		if err := env.Parse(&envConfig); err != nil {
+			panic(err)
+		}
+	})
 	return envConfig
 }
 
