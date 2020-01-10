@@ -1,13 +1,13 @@
-package redis_test
+package configer_test
 
 import (
-	"configer/redis"
+	"configer"
 	"fmt"
 	"testing"
 )
 
 func TestRedis(t *testing.T) {
-	f := redis.NewConfig()
+	f := configer.NewRedisConfig()
 	fmt.Printf("Host: %v \n", f.GetHost())
 	fmt.Printf("Port: %v \n", f.GetPort())
 	fmt.Printf("Database: %v \n", f.GetDatabase())

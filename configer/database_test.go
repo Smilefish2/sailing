@@ -1,13 +1,13 @@
-package database_test
+package configer_test
 
 import (
-	"configer/database"
+	"configer"
 	"fmt"
 	"testing"
 )
 
 func TestDatabase(t *testing.T) {
-	f := database.NewConfig()
+	f := configer.NewDatabaseConfig()
 	fmt.Printf("Connection: %v \n", f.GetConnection())
 	fmt.Printf("Host: %v \n", f.GetHost())
 	fmt.Printf("Port: %v \n", f.GetPort())

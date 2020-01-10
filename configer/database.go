@@ -1,4 +1,4 @@
-package database
+package configer
 
 import (
 	"github.com/caarlos0/env/v6"
@@ -15,7 +15,7 @@ type Database interface {
 	GetCollation() string
 }
 
-type config struct {
+type databaseConfig struct {
 	Connection string `env:"DB_CONNECTION" envDefault:"mysql"`
 	Host       string `env:"DB_HOST" envDefault:"127.0.0.1"`
 	Port       uint16 `env:"DB_PORT" envDefault:"3306"`
@@ -26,42 +26,42 @@ type config struct {
 	Collation  string `env:"DB_COLLATION" envDefault:"utf8mb4_unicode_ci"`
 }
 
-func NewConfig() Database {
-	var envConfig = config{}
+func NewDatabaseConfig() Database {
+	var envConfig = databaseConfig{}
 	if err := env.Parse(&envConfig); err != nil {
 		panic(err)
 	}
 	return envConfig
 }
 
-func (c config) GetConnection() string {
+func (c databaseConfig) GetConnection() string {
 	return c.Connection
 }
 
-func (c config) GetHost() string {
+func (c databaseConfig) GetHost() string {
 	return c.Host
 }
 
-func (c config) GetPort() uint16 {
+func (c databaseConfig) GetPort() uint16 {
 	return c.Port
 }
 
-func (c config) GetDatabase() string {
+func (c databaseConfig) GetDatabase() string {
 	return c.Database
 }
 
-func (c config) GetUsername() string {
+func (c databaseConfig) GetUsername() string {
 	return c.Username
 }
 
-func (c config) GetPassword() string {
+func (c databaseConfig) GetPassword() string {
 	return c.Password
 }
 
-func (c config) GetCharset() string {
+func (c databaseConfig) GetCharset() string {
 	return c.Charset
 }
 
-func (c config) GetCollation() string {
+func (c databaseConfig) GetCollation() string {
 	return c.Collation
 }
