@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package sailing.user;
+
+service User {
+    rpc QueryUserByName (Request) returns (Response) {
+    }
+}
+
+message user {
+    uint64 id = 1;
+    string uid = 2;
+    enum type //枚举消息类型
+    {
+        default = 0;
+        official = 1;
+        merchant = 2;
+    }
+    string email = 3;
+    string mobile = 4;
+    string avatar = 5;
+    string nickname = 6;
+    string username = 7;
+    string password = 8;
+    string salt = 9;
+    bool active = 10;
+    google.protobuf.Timestamp createdAt = 11;
+    google.protobuf.Timestamp updatedAt = 12;
+    google.protobuf.Timestamp deletedAt = 13;
+}
+
+message Error {
+    int32 code = 1;
+    string detail = 2;
+}
+
+message Request {
+    string userId = 1;
+    string username = 2;
+    string password = 3;
+}
+
+message Response {
+    bool success = 1;
+    Error error = 2;
+    user user = 3;
+}
