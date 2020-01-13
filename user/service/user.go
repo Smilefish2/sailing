@@ -25,7 +25,7 @@ type UserService interface {
 // GetService 获取服务类
 func GetService() (*userService, error) {
 	if s == nil {
-		return nil, fmt.Errorf("[GetService] GetService 未初始化")
+		return nil, fmt.Errorf("[GetService] UserService 未初始化")
 	}
 	return s, nil
 }
