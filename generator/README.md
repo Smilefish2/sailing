@@ -1,4 +1,5 @@
 # Generator
 
 (https://github.com/xo/xo)[xo]
+(https://github.com/src-d/proteus)[proteus]
 (https://github.com/infobloxopen/protoc-gen-gorm)[protoc-gen-gorm]
