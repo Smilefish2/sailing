@@ -2,9 +2,9 @@ package handler
 
 import (
 	"context"
+	pb "github.com/Smilefish0/sailing/user/proto"
+	"github.com/Smilefish0/sailing/user/service"
 	"github.com/micro/go-micro/util/log"
-	pb "user/proto"
-	"user/service"
 )
 
 type Service struct{}

@@ -2,9 +2,9 @@ package service
 
 import (
 	"fmt"
-	"starter"
+	"github.com/Smilefish0/sailing/starter"
+	pb "github.com/Smilefish0/sailing/user/proto"
 	"sync"
-	pb "user/proto"
 )
 
 var (
