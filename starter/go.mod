@@ -1,9 +1,9 @@
-module starter
+module github.com/Smilefish0/sailing/starter
 
 go 1.13
 
 require (
-	configer v0.0.0
+	github.com/Smilefish0/sailing/configer v0.0.0
 	github.com/alexflint/go-arg v1.2.0 // indirect
 	github.com/caarlos0/env/v6 v6.1.0
 	github.com/denisenkom/go-mssqldb v0.0.0-20191128021309-1d7a30a10f73 // indirect
@@ -25,4 +25,4 @@ require (
 	google.golang.org/appengine v1.6.5 // indirect
 )
 
-replace configer => ../configer //本地包相对路径或绝对路径
+replace github.com/Smilefish0/sailing/configer => ../configer //本地包相对路径或绝对路径
