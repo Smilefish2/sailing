@@ -19,11 +19,13 @@ CREATE TABLE `user`
     `password`    varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '' COMMENT '密码',
     `salt`        char(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci      NOT NULL DEFAULT '' COMMENT '盐值',
     `active` tinyint(1) NOT NULL DEFAULT '1' COMMENT '活动',
+    `status` enum('normal','disable','deleted') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'normal' COMMENT '状态',
     `created_at`  timestamp(3)                                                  NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updated_at`  timestamp(3)                                                  NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
     `deleted_at`  timestamp(3)                                                  DEFAULT NULL,
     PRIMARY KEY (`id`),
     UNIQUE KEY `user_uid_unique_index` (`uid`),
+    UNIQUE KEY `user_mobile_unique_index` (`mobile`),
     UNIQUE KEY `user_nickname_unique_index` (`nickname`),
     UNIQUE KEY `user_username_unique_index` (`username`)
 ) ENGINE = InnoDB
