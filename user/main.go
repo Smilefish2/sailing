@@ -9,7 +9,7 @@ import (
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/util/log"
 
-	pb "github.com/Smilefish0/sailing/user/proto"
+	userProto "github.com/Smilefish0/sailing/user/proto/user"
 )
 
 func main() {
@@ -31,7 +31,7 @@ func main() {
 
 	// Register Handler   注册服务
 	// service.RegisterUserHandler(service.Server(), new(handler.Service))
-	pb.RegisterUserHandler(service.Server(), new(handler.Service))
+	userProto.RegisterUserServiceHandler(service.Server(), new(handler.Service))
 
 	// Run service    启动服务
 	if err := service.Run(); err != nil {

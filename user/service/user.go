@@ -3,7 +3,7 @@ package service
 import (
 	"fmt"
 	"github.com/Smilefish0/sailing/starter"
-	pb "github.com/Smilefish0/sailing/user/proto"
+	userProto "github.com/Smilefish0/sailing/user/proto/user"
 	"sync"
 )
 
@@ -19,7 +19,7 @@ type userService struct {
 // Service 用户服务类
 type UserService interface {
 	// QueryUserByName 根据用户名获取用户
-	QueryUserByName(userName string) (ret *pb.User, err error)
+	QueryUserByName(userName string) (ret *userProto.User, err error)
 }
 
 // GetService 获取服务类
@@ -42,13 +42,13 @@ func Init() {
 	s = &userService{}
 }
 
-func (s *userService) QueryUserByName(userName string) (ret *pb.User, err error) {
+func (s *userService) QueryUserByName(userName string) (ret *userProto.User, err error) {
 	queryString := `SELECT uid, username, password FROM user WHERE username = ?`
 
 	// 获取数据库
 	db := starter.DB()
 
-	ret = &pb.User{}
+	ret = &userProto.User{}
 
 	// 查询
 	db.Raw(queryString, userName).Scan(&ret)

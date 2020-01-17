@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+package go.micro.sailing.user;
+
+service UserService {
+    rpc QueryUserByName (Request) returns (Response) {
+    }
+}
+
+// User represents a row from 'sailing_user.user'.
+message User {
+	uint64 id = 1 [(gogoproto.customname) = "ID"];
+	string uid = 2 [(gogoproto.customname) = "UID"];
+	sailing.user.Type type = 3;
+	string email = 4;
+	string mobile = 5;
+	string avatar = 6;
+	string nickname = 7;
+	string username = 8;
+	string password = 9;
+	string salt = 10;
+	bool active = 11;
+	sailing.user.Status status = 12;
+	google.protobuf.Timestamp created_at = 13 [(gogoproto.nullable) = false, (gogoproto.stdtime) = true];
+	google.protobuf.Timestamp updated_at = 14 [(gogoproto.nullable) = false, (gogoproto.stdtime) = true];
+}
+
+// Status is the 'status' enum type from schema 'sailing_user'.
+enum Status {
+	// StatusNormal is the 'normal' Status.
+	STATUS_NORMAL = 0 [(gogoproto.enumvalue_customname) = "StatusNormal"];
+	// StatusDisable is the 'disable' Status.
+	STATUS_DISABLE = 1 [(gogoproto.enumvalue_customname) = "StatusDisable"];
+	// StatusDeleted is the 'deleted' Status.
+	STATUS_DELETED = 2 [(gogoproto.enumvalue_customname) = "StatusDeleted"];
+}
+
+// Type is the 'type' enum type from schema 'sailing_user'.
+enum Type {
+	// TypeDefault is the 'default' Type.
+	TYPE_DEFAULT = 0 [(gogoproto.enumvalue_customname) = "TypeDefault"];
+	// TypeOfficial is the 'official' Type.
+	TYPE_OFFICIAL = 1 [(gogoproto.enumvalue_customname) = "TypeOfficial"];
+	// TypeMerchant is the 'merchant' Type.
+	TYPE_MERCHANT = 2 [(gogoproto.enumvalue_customname) = "TypeMerchant"];
+}
+
+message Error {
+    int32 code = 1;
+    string detail = 2;
+}
+
+message Request {
+    string userId = 1;
+    string username = 2;
+    string password = 3;
+}
+
+message Response {
+    bool success = 1;
+    Error error = 2;
+    User user = 3;
+}

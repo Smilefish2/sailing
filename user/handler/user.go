@@ -2,7 +2,7 @@ package handler
 
 import (
 	"context"
-	pb "github.com/Smilefish0/sailing/user/proto"
+	userProto "github.com/Smilefish0/sailing/user/proto/user"
 	"github.com/Smilefish0/sailing/user/service"
 	"github.com/micro/go-micro/util/log"
 )
@@ -24,11 +24,11 @@ func Init() {
 }
 
 // QueryUserByName 通过参数中的名字返回用户
-func (e *Service) QueryUserByName(ctx context.Context, req *pb.Request, rsp *pb.Response) error {
+func (e *Service) QueryUserByName(ctx context.Context, req *userProto.Request, rsp *userProto.Response) error {
 	user, err := userService.QueryUserByName(req.Username)
 	if err != nil {
 		rsp.Success = false
-		rsp.Error = &pb.Error{
+		rsp.Error = &userProto.Error{
 			Code:   500,
 			Detail: err.Error(),
 		}
