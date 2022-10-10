@@ -3,7 +3,7 @@ package starter
 import (
 	"errors"
 	"fmt"
-	"github.com/Smilefish0/sailing/configer"
+	"github.com/Smilefish2/sailing/configer"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/postgres"

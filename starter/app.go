@@ -1,7 +1,7 @@
 package starter
 
 import (
-	"github.com/Smilefish0/sailing/configer"
+	"github.com/Smilefish2/sailing/configer"
 	//"github.com/fatih/color"
 	_ "github.com/joho/godotenv/autoload"
 	"github.com/micro/go-micro/util/log"

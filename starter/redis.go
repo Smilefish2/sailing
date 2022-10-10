@@ -2,7 +2,7 @@ package starter
 
 import (
 	"fmt"
-	"github.com/Smilefish0/sailing/configer"
+	"github.com/Smilefish2/sailing/configer"
 	"github.com/go-redis/redis/v7"
 	"github.com/micro/go-micro/util/log"
 	"sync"

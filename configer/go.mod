@@ -1,4 +1,4 @@
-module github.com/Smilefish0/sailing/configer
+module github.com/Smilefish2/sailing/configer
 
 go 1.13
 

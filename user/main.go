@@ -1,15 +1,15 @@
 package main
 
 import (
-	"github.com/Smilefish0/sailing/configer"
-	_ "github.com/Smilefish0/sailing/starter"
-	"github.com/Smilefish0/sailing/user/handler"
-	srv "github.com/Smilefish0/sailing/user/service"
+	"github.com/Smilefish2/sailing/configer"
+	_ "github.com/Smilefish2/sailing/starter"
+	"github.com/Smilefish2/sailing/user/handler"
+	srv "github.com/Smilefish2/sailing/user/service"
 	"github.com/micro/cli"
 	"github.com/micro/go-micro"
 	"github.com/micro/go-micro/util/log"
 
-	userProto "github.com/Smilefish0/sailing/user/proto/user"
+	userProto "github.com/Smilefish2/sailing/user/proto/user"
 )
 
 func main() {

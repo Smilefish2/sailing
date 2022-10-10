@@ -2,8 +2,8 @@ package service
 
 import (
 	"fmt"
-	"github.com/Smilefish0/sailing/starter"
-	userProto "github.com/Smilefish0/sailing/user/proto/user"
+	"github.com/Smilefish2/sailing/starter"
+	userProto "github.com/Smilefish2/sailing/user/proto/user"
 	"sync"
 )
 

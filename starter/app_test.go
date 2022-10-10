@@ -1,7 +1,7 @@
 package starter_test
 
 import (
-	_ "github.com/Smilefish0/sailing/starter"
+	_ "github.com/Smilefish2/sailing/starter"
 	"testing"
 )
 

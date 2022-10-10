@@ -2,8 +2,8 @@ package handler
 
 import (
 	"context"
-	userProto "github.com/Smilefish0/sailing/user/proto/user"
-	"github.com/Smilefish0/sailing/user/service"
+	userProto "github.com/Smilefish2/sailing/user/proto/user"
+	"github.com/Smilefish2/sailing/user/service"
 	"github.com/micro/go-micro/util/log"
 )
 
